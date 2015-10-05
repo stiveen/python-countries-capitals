@@ -25,36 +25,46 @@ def contry():
     var= True
     while var== True:
         val1=raw_input("Enter a country:")
-        if val1.isalpha() == True:
+        val1= val1.title()
+        if str(val1).isalpha() == True or " " in val1:
             paises.append(val1)
             var =False
         else:
-            print "su dato no es valido intentelo de nuevo"
+            print "Your data is not valid try again"
             var = True
     vor = True
     while vor == True:
         val2=raw_input("Enter a capitals:")
-        if val2.isalpha() == True:
+        val2= val2.title()
+        if str(val2).isalpha() == True or " " in val2:
             capitales.append(val2)
             vor = False
         else:
-            print "su dato no es valido intentelo de nuevo"
+            print "Your data is not valid try again"
             vor = True
+    todo[val1]=val2        
     limpiar()
     question()
-    menu()
 
 def contries():
     for i in paises:
         print i
-    raw_input("presione enter")
+    raw_input("Enter persione")
     limpiar()
     menu()
 
 def capitals():
     for i in capitales:
         print i
-    raw_input("presione enter")
+    raw_input("Enter persioner")
+    limpiar()
+    menu()
+
+def alll():
+    print "Contries"+"--"+"Capitals"
+    for i in todo:
+        print i,"--", todo[i]
+    raw_input("Press enter to continue")
     limpiar()
     menu()
 
@@ -64,23 +74,23 @@ def menu ():
     print"          -----INSTRUCTIONS--------            "
     print"*write the word what you want for any option"
     print
-    print "1.Country"
-    print "2.Countries"
-    print "3.Capitals"
+    print "1.country"
+    print "2.countries"
+    print "3.capitals"
     print "4.All"
     print "5.All Ordered"
     print "6.Get out"
 
     menu=raw_input("ingrese una opcion:")
     limpiar()
-    if menu == "1":
+    if menu == "1" or menu == "country":
         contry()
-    elif menu == "2":
+    elif menu == "2" or menu == "countries":
         contries()
-    elif menu == "3":
+    elif menu == "3" or menu == "capitals":
         capitals()
-    elif menu == "4":
-        xx
+    elif menu == "4" or menu == "All":
+        alll()
     elif menu == "5":
         xxxxx
     elif menu == "6":
