@@ -10,7 +10,7 @@ def limpiar():
     os.system("clear")
 
 def question ():
-    val3=raw_input("You want to enter another country and capital? y/n")
+    val3=raw_input("You want to enter another country and capital? y/n\n")
     val3=val3.lower()
     if val3 == "y":
         contry()
@@ -22,10 +22,24 @@ def question ():
         question()
 
 def contry():
-    val1=raw_input("Enter a country:")
-    paises.append(val1)
-    val2=raw_input("Enter a capitals:")
-    capitales.append(val2)
+    var= True
+    while var== True:
+        val1=raw_input("Enter a country:")
+        if val1.isalpha() == True:
+            paises.append(val1)
+            var =False
+        else:
+            print "su dato no es valido intentelo de nuevo"
+            var = True
+    vor = True
+    while vor == True:
+        val2=raw_input("Enter a capitals:")
+        if val2.isalpha() == True:
+            capitales.append(val2)
+            vor = False
+        else:
+            print "su dato no es valido intentelo de nuevo"
+            vor = True
     limpiar()
     question()
     menu()
@@ -44,10 +58,12 @@ def capitals():
     limpiar()
     menu()
 
-
 def menu ():
-    print">>>>>>Countries and capitals<<<<<<"
-
+    print"       >>>>>>Countries and capitals<<<<<<       "
+    print"==============================================="
+    print"          -----INSTRUCTIONS--------            "
+    print"*write the word what you want for any option"
+    print
     print "1.Country"
     print "2.Countries"
     print "3.Capitals"
@@ -73,9 +89,3 @@ def menu ():
         "no"
     
 menu()
-
-
-
-
-
-
