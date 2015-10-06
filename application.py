@@ -1,5 +1,8 @@
+#!/usr/bin/python
+import os
 import sys
-import os 
+from collections import OrderedDict
+
 todo={}
 paises=[]
 capitales=[]
@@ -47,6 +50,7 @@ def contry():
     question()
 
 def contries():
+    print "CONTRIES"
     for i in paises:
         print i
     raw_input("Enter persione")
@@ -54,6 +58,7 @@ def contries():
     menu()
 
 def capitals():
+    print "CAPITALS"
     for i in capitales:
         print i
     raw_input("Enter persioner")
@@ -61,40 +66,58 @@ def capitals():
     menu()
 
 def alll():
-    print "Contries"+"--"+"Capitals"
+    print "Contries"+"===================="+"Capitals"
     for i in todo:
-        print i,"--", todo[i]
+        print i.ljust(10),"..............",todo[i].rjust(10)
     raw_input("Press enter to continue")
     limpiar()
     menu()
+
+def allordered(): 
+
+    print "          --All Ordered--          "
+    print "==================================="
+    print " COUNTRIES ".center(15)+" CAPITALS ".center(15)
+    print "==================================="
+    ordered = OrderedDict(sorted(todo.items(), key=lambda x: x[1:]))
+    for key, value in ordered.items():
+        print key.center(20) + value.center(10)
+    raw_input("Press enter to continue")
+    limpiar()
+    menu()
+
 
 def menu ():
     print"       >>>>>>Countries and capitals<<<<<<       "
     print"==============================================="
     print"          -----INSTRUCTIONS--------            "
-    print"*write the word what you want for any option"
+    print"* To choose an option enter the number or name of the option"
     print
     print "1.country"
     print "2.countries"
     print "3.capitals"
     print "4.All"
-    print "5.All Ordered"
+    print "5.AllOrdered"
     print "6.Get out"
-
-    menu=raw_input("ingrese una opcion:")
+    opcion=raw_input("Enter option:")
     limpiar()
-    if menu == "1" or menu == "country":
+
+    if opcion == "1" or opcion == "country":
         contry()
-    elif menu == "2" or menu == "countries":
+    elif opcion == "2" or opcion == "countries":
         contries()
-    elif menu == "3" or menu == "capitals":
+    elif opcion == "3" or opcion == "capitals":
         capitals()
-    elif menu == "4" or menu == "All":
+    elif opcion == "4" or opcion == "all":
         alll()
-    elif menu == "5":
-        xxxxx
-    elif menu == "6":
+    elif opcion == "5" or opcion == "allordered":
+        allordered()
+    elif opcion == "6":
         xxxxx
     else:
-        "no"
+        print "su dato no es valido vuelva a intentarlo"
+    raw_input("Press enter to continue")
+    limpiar()
+    menu()
+    
 menu()
