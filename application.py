@@ -36,7 +36,13 @@ def email():
         server.quit()
         print "yes"
         raw_input("press enter")
-    except ValueError:
+    except (smtplib.SMTPAuthenticationError):
+        limpiar()
+        print "User name or password is incorrect introduce again"
+        raw_input("press enter")
+        limpiar()
+        email()
+
         print "No se envio nada"
 
 def limpiar():
