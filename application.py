@@ -1,11 +1,43 @@
-#!/usr/bin/python
+    #!/usr/bin/python
+# -​*- coding: utf-8 -*​-
+from collections import OrderedDict
+from email.MIMEMultipart import MIMEMultipart
+from email.MIMEText import MIMEText
 import os
 import sys
-from collections import OrderedDict
-
+import smtplib
+import getpass
 todo={}
 paises=[]
 capitales=[]
+def email():
+
+    print "Send email by gmail"
+
+    fromaddr = raw_input("Count from gmail: ")
+    password = getpass.getpass("Password: ")
+    toaddrs = raw_input("to: ")
+    #asunto = raw_input("subject, from message: ")
+    body = "Countries\t========\tCapitals\n"
+    for msg in todo:
+           body = body + str(msg).center(20) +str(todo[msg]).center(40) + "\n" 
+    msg = MIMEMultipart()
+    msg['From'] = fromaddr #This saves the mail of the sender
+    msg['To'] = toaddrs  #This saves the mail of the receiver
+    msg['Subject'] = "Countries and Capitals"  #This saves the subject
+    msg.attach(MIMEText(body, 'plain')) #This saves the message
+
+    try:
+        server = smtplib.SMTP('smtp.gmail.com:587')
+        server.starttls()
+        server.login(fromaddr,password)
+        text = msg.as_string()
+        server.sendmail(fromaddr, toaddrs, text)
+        server.quit()
+        print "yes"
+        raw_input("press enter")
+    except ValueError:
+        print "No se envio nada"
 
 def limpiar():
     "This function serves to clean in windows and ubuntu"
@@ -113,7 +145,7 @@ def menu ():
     elif opcion == "5" or opcion == "allordered":
         allordered()
     elif opcion == "6":
-        xxxxx
+        email()
     else:
         print "su dato no es valido vuelva a intentarlo"
     raw_input("Press enter to continue")
